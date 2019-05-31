@@ -1,5 +1,8 @@
 package com.ryz2593.leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * 66. Plus One
@@ -26,6 +29,7 @@ package com.ryz2593.leetcode;
  * @desc
  */
 public class PlusOne {
+    
     public static int[] plusOne(int[] digits) {
         for (int i = digits.length - 1; i >= 0; i--) {
             if (digits[i] != 9) {
@@ -38,15 +42,35 @@ public class PlusOne {
         int[] result = new int[digits.length + 1];
         result[0] = 1;
         System.arraycopy(digits, 0, result, 1, result.length - 1);
+        return result;
+    }
+
+    /**
+     * 不可用， long或者int 类型数字都会有一个范围， 当数组长度超过类型最大值时，返回结果就是错的
+     * @param digits
+     * @return
+     */
+    public static int[] plusOne2(int[] digits) {
+        long num = 1;
+        for (int i = digits.length - 1; i >= 0; i--) {
+            num += digits[i] * Math.pow(10, digits.length - 1 - i);
+        }
+        String numStr = num+"";
+        int[] result = new int[numStr.length()];
+        for (int i = 0; i < numStr.length(); i++) {
+            result[i] = Integer.parseInt(String.valueOf(numStr.charAt(i)));
+        }
         for (int i : result) {
-            System.out.print(i + ", ");
+            System.out.print(i + " ");
         }
         System.out.println();
         return result;
     }
 
     public static void main(String[] args) {
-        int[] digits = {8,9,9};
+        int[] digits = {6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3};
         System.out.println(plusOne(digits));
+        System.out.println(plusOne2(digits));
+
     }
 }
