@@ -10,7 +10,7 @@ public class ClassDemo3 {
         String s = "hello";
         ClassUtil.printClassMessage(s);
 
-//        Integer n1 = 1;
-//        ClassUtil.printClassMessage(n1);
+        Integer n1 = 1;
+        ClassUtil.printClassMessage(n1);
     }
 }

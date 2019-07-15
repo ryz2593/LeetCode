@@ -41,7 +41,7 @@ public class ClassUtil {
             }
             System.out.print(")");
 
-
+            System.out.println("----------------------------");
             /**
              * 成员变量也是对象
              * java.lang.reflect.Field
