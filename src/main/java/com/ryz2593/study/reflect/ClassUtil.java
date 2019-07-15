@@ -1,7 +1,9 @@
 package com.ryz2593.study.reflect;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * @author ryz2593
@@ -41,26 +43,49 @@ public class ClassUtil {
             }
             System.out.print(")");
 
-            System.out.println("----------------------------");
-            /**
-             * 成员变量也是对象
-             * java.lang.reflect.Field
-             * Field类封装了关于成员变量的操作
-             * getFields()方法获取的是所有的public成员变量的信息
-             * getDeclaredFields() 获取所有自己声明的的成员变量信息
-             */
-            Field[] fs = c.getFields();
-            Field[] declaredFields = c.getDeclaredFields();
-            for (Field field : fs) {
-                //得到成员变量的类类型
-                Class<?> fieldType = field.getType();
-                String typeName = fieldType.getName();
+            printFieldMessage(c);
 
-                //得到成员变量的名称
-                String fieldName = field.getName();
-                System.out.println(typeName + " " + fieldName);
+        }
+    }
+
+    public static void printFieldMessage(Object obj) {
+        Class c = obj.getClass();
+        /**
+         * 成员变量也是对象
+         * java.lang.reflect.Field
+         * Field类封装了关于成员变量的操作
+         * getFields()方法获取的是所有的public成员变量的信息
+         * getDeclaredFields() 获取所有自己声明的的成员变量信息
+         */
+//        Field[] fs = c.getFields();
+        Field[] fs = c.getDeclaredFields();
+        for (Field field : fs) {
+            //得到成员变量的类类型
+            Class<?> fieldType = field.getType();
+            String typeName = fieldType.getName();
+
+            //得到成员变量的名称
+            String fieldName = field.getName();
+            System.out.println(typeName + " " + fieldName);
+        }
+    }
+
+    public static void printConstructMessage(Object obj) {
+        Class c = obj.getClass();
+        /**
+         *java.lang.Constructor中封装了构造函数的信息
+         * getConstructors() 得到所有的public的构造函数
+         * getDeclaredConstructors() 得到所有的构造函数
+         */
+        Constructor[] declaredConstructors = c.getDeclaredConstructors();
+        for (Constructor constructor : declaredConstructors) {
+            System.out.print(constructor.getName() + "(");
+            //获取构造函数的参数列表->得到的是参数列表的类类型
+            Class[] parameterTypes = constructor.getParameterTypes();
+            for (Class parameterType : parameterTypes) {
+                System.out.print(parameterType.getName() + ",");
             }
-
+            System.out.println(")");
         }
     }
 }
