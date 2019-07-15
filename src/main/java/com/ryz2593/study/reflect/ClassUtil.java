@@ -1,5 +1,6 @@
 package com.ryz2593.study.reflect;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -39,6 +40,27 @@ public class ClassUtil {
                 System.out.print(parameterType.getName() + ", ");
             }
             System.out.print(")");
+
+
+            /**
+             * 成员变量也是对象
+             * java.lang.reflect.Field
+             * Field类封装了关于成员变量的操作
+             * getFields()方法获取的是所有的public成员变量的信息
+             * getDeclaredFields() 获取所有自己声明的的成员变量信息
+             */
+            Field[] fs = c.getFields();
+            Field[] declaredFields = c.getDeclaredFields();
+            for (Field field : fs) {
+                //得到成员变量的类类型
+                Class<?> fieldType = field.getType();
+                String typeName = fieldType.getName();
+
+                //得到成员变量的名称
+                String fieldName = field.getName();
+                System.out.println(typeName + " " + fieldName);
+            }
+
         }
     }
 }
