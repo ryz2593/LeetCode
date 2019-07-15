@@ -32,13 +32,13 @@ public class ClassUtil {
             Class returnType = ms[i].getReturnType();
             System.out.println(returnType.getName() + " ");
             //得到方法的名称
-            System.out.println(ms[i].getName() + "(");
+            System.out.print(ms[i].getName() + "(");
             //获取参数类型的类类型
             Class[] parameterTypes = ms[i].getParameterTypes();
             for (Class parameterType : parameterTypes) {
                 System.out.print(parameterType.getName() + ", ");
             }
-            System.out.println(")");
+            System.out.print(")");
         }
     }
 }
