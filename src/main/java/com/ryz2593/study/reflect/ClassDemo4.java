@@ -8,5 +8,6 @@ package com.ryz2593.study.reflect;
 public class ClassDemo4 {
     public static void main(String[] args) {
         ClassUtil.printFieldMessage("hello");
+        ClassUtil.printFieldMessage(new Integer(1));
     }
 }
